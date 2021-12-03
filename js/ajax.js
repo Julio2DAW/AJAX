@@ -35,3 +35,48 @@ function cargarFichero3() {
     xhttp.open('GET', 'datos.txt', true)
     xhttp.send()
 }
+
+//Enviando datos al servidor por POST
+function peticionPOST() {
+    let formData = new FormData()
+    formData.append('param1', 42)
+    formData.append('param2', 'Miguel ')
+    let opciones = {
+        method: 'POST',
+        body: formData
+    }
+    fetch('php/datos_post.php', opciones)//Hacemos la peticón
+        .then(respuesta => respuesta.text())//Recibimos un objeto
+        .then(texto => document.getElementById('span4').innerHTML = texto)
+}
+
+//Enviando datos al servidor por POST JSON
+function peticionPOSTJSON() {
+    let datos = {
+        'param1' : 42,
+        'param2' : 'Miguel'
+    }
+    let opciones = {
+        method: 'POST',
+        body: JSON.stringify(datos),
+        headers:{'Content-Type': 'application/json'}
+    }
+    fetch('php/datos_post_json.php', opciones)//Hacemos la peticón
+        .then(respuesta => respuesta.text())//Recibimos un objeto
+        .then(texto => document.getElementById('span5').innerHTML = texto)
+}
+
+function peticionPOSTJSON2() {
+    let datos = {
+        'param1' : 42,
+        'param2' : 'Miguel'
+    }
+    let opciones = {
+        method: 'POST',
+        body: JSON.stringify(datos),
+        headers:{'Content-Type': 'application/json'}
+    }
+    fetch('php/datos_post_json2.php', opciones)//Hacemos la peticón
+        .then(respuesta => respuesta.text())//Recibimos un objeto
+        .then(objeto => document.getElementById('span6').innerHTML = objeto.loqsea)
+}
